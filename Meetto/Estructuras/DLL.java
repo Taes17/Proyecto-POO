@@ -16,7 +16,7 @@ public class DLL {
         boolean done = false;
         Node n = new Node( val );
 
-        if (this.first == null) {
+        if( this.first == null ) {
 
             this.first = n;
             this.last = n;
