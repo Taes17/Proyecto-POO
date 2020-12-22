@@ -7,7 +7,7 @@ public class Queue {
         this.queue = new DLL();
     }
 
-    boolean Queue_Enqueue( int val ) {
+    boolean Queue_Enqueue( Publicacion val ) {
 
         return this.queue.DLL_InsertBack( val );
     }

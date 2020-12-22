@@ -6,7 +6,7 @@ public class MyException {
 
     void ValidarNombre( String nombre ) throws NombreInvalido {
 
-        if( !nombre.matches("^([A-Z]{1}[a-z]+[ ]*){1,3}") ) throw new NombreInvalido();
+        if( !nombre.matches("^([A-Z]{1}[a-z]+[ ]*){1,4}") ) throw new NombreInvalido();
     }
 
     void ValidarEdad( int edad ) throws EdadInvalida {

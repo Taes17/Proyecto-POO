@@ -1,3 +1,10 @@
+/** LIgada con el muro general 
+ * 
+ * 
+ * 
+ * - Tafolla 
+*/
+
 public class Muro {
     
     Usuario u; 
