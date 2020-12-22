@@ -3,6 +3,7 @@ public class Usuario {
     String nombre;
     String email;
     int edad;
+    String password;
 
     Usuario() {}
 
@@ -18,6 +19,11 @@ public class Usuario {
         this.edad = edad;
     }
 
+    void setPassword( String password ) {
+
+        this.password = password;
+    }
+
     String getNombre() {
         return this.nombre;
     }
@@ -28,5 +34,10 @@ public class Usuario {
 
     int setEdad() {
         return this.edad;
+    }
+
+    String setPassword() {
+
+        return this.password;
     }
 }

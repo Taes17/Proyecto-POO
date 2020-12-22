@@ -10,13 +10,18 @@ public class MyException {
     }
 
     void ValidarEdad( int edad ) throws EdadInvalida {
-        
+
         if( edad < 18 ) throw new EdadInvalida();
     }
 
     void ValidarEmail( String email ) throws EmailInvalido {
 
         if( !email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") ) throw new EmailInvalido();
+    }
+
+    void validarPassword( String password ) throws PasswordInseguro {
+
+        if( !password.matches("^[A-Za-z|$|@|!]{8}") ) throw new PasswordInseguro();
     }
 }
 
@@ -38,5 +43,12 @@ class EmailInvalido extends Exception {
 
     EmailInvalido() {
         super("El correo que ingreso es invalido.");
+    }
+}
+
+class PasswordInseguro extends Exception {
+
+    PasswordInseguro() {
+        super("El password que ingreso es muy inseguro.");
     }
 }
