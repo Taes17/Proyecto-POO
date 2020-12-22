@@ -2,7 +2,7 @@ public class Usuario {
 
     String nombre;
     String email;
-    Int edad;
+    int edad;
 
     Usuario() {}
 
