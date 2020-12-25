@@ -1,3 +1,4 @@
+package usuarios;
 import java.lang.Exception;
 
 public class MyException {
@@ -19,9 +20,10 @@ public class MyException {
         if( !email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") ) throw new EmailInvalido();
     }
 
-    void validarPassword( String password ) throws PasswordInseguro {
+    void validarPassword( String password, String repPassword ) throws PasswordError {
 
-        if( !password.matches("^[A-Za-z|$|@|!]{8}") ) throw new PasswordInseguro();
+        if( !password.equals( repPassword ) ) throw new PasswordError("Las contrasañas no coinciden");
+        if( !password.matches("^[A-Za-z0-9|$|@|!]{8}") ) throw new PasswordError("El password que ingreso es inseguro");
     }
 }
 
@@ -46,9 +48,9 @@ class EmailInvalido extends Exception {
     }
 }
 
-class PasswordInseguro extends Exception {
+class PasswordError extends Exception {
 
-    PasswordInseguro() {
-        super("El password que ingreso es muy inseguro.");
+    PasswordError( String msj ) {
+        super( msj );
     }
 }

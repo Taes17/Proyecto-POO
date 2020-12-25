@@ -1,3 +1,5 @@
+package usuarios;
+
 public class Usuario {
 
     String nombre;
@@ -36,7 +38,7 @@ public class Usuario {
         return this.edad;
     }
 
-    String setPassword() {
+    String getPassword() {
 
         return this.password;
     }
