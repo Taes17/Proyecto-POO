@@ -6,10 +6,11 @@ public class Usuario {
     String email;
     int edad;
     String password;
+    String Imagen;
 
-    Usuario() {}
+    public Usuario() {}
 
-    Usuario( String nombre, String email, int edad, String password ) {
+    public Usuario( String nombre, String email, int edad, String password ) {
 
         this.nombre = nombre;
         this.email = email;
@@ -46,12 +47,17 @@ public class Usuario {
         return this.edad;
     }
 
-    String getPassword() {
+    public String getPassword() {
 
         return this.password;
     }
 
     public String toString() {
         return "\n" + this.nombre + "\n" + this.email + "\n" + this.password;
+    }
+
+    public void setImagen( String ruta ) {
+
+        this.Imagen = ruta;
     }
 }

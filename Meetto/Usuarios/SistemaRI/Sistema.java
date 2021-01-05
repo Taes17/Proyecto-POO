@@ -1,4 +1,6 @@
-package meetto.usuarios;
+package meetto.usuarios.sistema_ri;
+
+import meetto.usuarios.*;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
