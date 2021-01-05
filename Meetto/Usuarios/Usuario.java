@@ -1,4 +1,4 @@
-package usuarios;
+package meetto.usuarios;
 
 public class Usuario {
 
@@ -8,6 +8,14 @@ public class Usuario {
     String password;
 
     Usuario() {}
+
+    Usuario( String nombre, String email, int edad, String password ) {
+
+        this.nombre = nombre;
+        this.email = email;
+        this.edad = edad;
+        this.password = password;
+    }
 
     void setNombre( String nombre ) {
         this.nombre = nombre;
@@ -41,5 +49,9 @@ public class Usuario {
     String getPassword() {
 
         return this.password;
+    }
+
+    public String toString() {
+        return "\n" + this.nombre + "\n" + this.email + "\n" + this.password;
     }
 }

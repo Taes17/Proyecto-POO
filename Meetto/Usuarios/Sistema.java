@@ -1,27 +1,23 @@
-package usuarios;
+package meetto.usuarios;
 
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-
 public class Sistema {
 
-    public HashMap<String, Usuario> usuarios;
+    private HashMap<String, Usuario> usuarios;
     private Scanner sc;
 
     public Sistema() {
 
         this.usuarios = new HashMap<String, Usuario>();
-        /* NO se si aqui pero deberia de ir la serializacion para el mapa*/
         this.sc = new Scanner( System.in );
     }
 
-    public boolean Registro( String nombre, int edad, String email, String password, String repPassword, JLabel mensaje ) {
+    public String Registro( String nombre, int edad, String email, String password, String repPassword ) {
         
-        boolean done = false;
+        String str = "";
 
         try {
 
@@ -31,74 +27,70 @@ public class Sistema {
             ex.ValidarEdad( edad );
             ex.ValidarEmail( email );
             ex.validarPassword( password, repPassword );
-
-            Usuario u = new Usuario();
-
-            u.setNombre( nombre );
-            u.setEdad( edad );
-            u.setEmail( email );
-            u.setPassword( password );
             
-            usuarios.put( email, u );
+            if( usuarios.containsKey( email ) ) {
+           
+                System.out.println( "El correo que trata de utilizar para registrarse, ya ha sido usado para crear otra cuenta" );
+                str = "El correo que trata de utilizar para registrarse, ya ha sido usado para crear otra cuenta";
+            } else {
 
-            mensaje.setText( "Registro exitoso." );
-            System.out.println( "Registro exitoso." );
-
-            done = true;
+                usuarios.put( email, new Usuario( nombre, email, edad, password ) );
+                System.out.println( "Registro exitoso." + usuarios.get(email) );
+                str = "Registro exitoso.";
+            }
 
         } catch( NombreInvalido ni ) {
 
-            mensaje.setText( ni.getMessage() );
+            str = ni.getMessage();
             System.out.println( ni.getMessage() );
         } catch( InputMismatchException ime ) {
 
-            mensaje.setText( "Ingrese solo numeros." );
+            str = "Ingrese solo numeros";
             System.out.println( "Ingrese solo numeros." );
         } catch( EdadInvalida ei ) {
 
-            mensaje.setText( ei.getMessage() );
+            str = ei.getMessage();
             System.out.println( ei.getMessage() );
         } catch( EmailInvalido ci ) {
 
-            mensaje.setText( ci.getMessage() );
+            str = ci.getMessage();
             System.out.println( ci.getMessage() );
         } catch( PasswordError pe ) {
 
-            mensaje.setText( pe.getMessage() );
+            str = pe.getMessage();
             System.out.println( pe.getMessage() );
         }
 
-        return done;
+        return str;
     }
 
-    public boolean Ingresar() {
+    public String Ingresar( String email, String password ) {
 
         Usuario u = null;
-        String password = "";
 
         try {
 
             MyException ex = new MyException();
 
-            String email = sc.next();
             ex.ValidarEmail( email );
 
-            sc.nextLine(); //Limpiar buffer del Scanner
+            if( usuarios.containsKey( email ) ) {
 
-            password = sc.nextLine();
-            ex.validarPassword( password, password );
-            
-            u = usuarios.get( email );
+                u = usuarios.get( email );
+                if( u.getPassword().equals( password ) ) return "Ingreso correcto";
+                else return "Contraseña incorrecta.";
+            } else {
+
+                System.out.println("El email que trata de usar no se encuentra registrado registrado");
+                return "El email que trata de usar no se encuentra registrado registrado.";
+            }
 
         } catch( EmailInvalido ci ) {
 
             System.out.println( ci.getMessage() );
-        } catch( PasswordError pi ) {
+            return ci.getMessage();
+        } 
 
-            System.out.println( pi.getMessage() );
-        }
-
-        if( u.getPassword().equals( password ) ) return true; //Contraseña correcta
-        else return false; // Contraseña incorrecta
+        //return "Ingreso correcto";
     }
 }

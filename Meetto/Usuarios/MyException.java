@@ -1,4 +1,5 @@
-package usuarios;
+package meetto.usuarios;
+
 import java.lang.Exception;
 
 public class MyException {
@@ -23,7 +24,7 @@ public class MyException {
     void validarPassword( String password, String repPassword ) throws PasswordError {
 
         if( !password.equals( repPassword ) ) throw new PasswordError("Las contrasañas no coinciden");
-        if( !password.matches("^[A-Za-z0-9|$|@|!]{8}") ) throw new PasswordError("El password que ingreso es inseguro");
+        if( !password.matches("^[A-Za-z0-9|$|@|!]{8,16}") ) throw new PasswordError("El password que ingreso es inseguro");
     }
 }
 
